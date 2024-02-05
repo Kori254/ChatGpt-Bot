@@ -2,6 +2,8 @@ import OpenAI from 'openai';
 import dotenv from 'dotenv';
 import readlineSync from 'readline-sync';
 import colors from 'colors';
+import say from 'say';
+import speaker from 'speakertts';
 dotenv.config();
 
 const openai = new OpenAI({
@@ -46,6 +48,15 @@ async function main() {
             }
 
             console.log(('Bot:') + completionText);
+            // say.speak("hello my name is lewis");
+            speaker.speak('Hello, world', 'Microsoft David Desktop', 1, 'ASCII', (error) => {
+                if (error) {
+                    return console.error('Error speaking!', error)
+                }
+
+                console.log('text to speech complete')
+                })
+            
             chatHistory.push(['user', userInput]);
             chatHistory.push(['assistant', completionText]);
 
